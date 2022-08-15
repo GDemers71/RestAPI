@@ -21,5 +21,6 @@ namespace RocketElevators.Models
 
         public List<Battery> Batteries { get; set; }
 
+        public Customer? Customer { get; set; }
     }
 }

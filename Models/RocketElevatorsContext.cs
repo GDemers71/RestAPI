@@ -17,14 +17,15 @@ namespace RocketElevators.Models
         public DbSet<Lead> leads { get; set; } = null!;
         public DbSet<Building>? buildings { get; set; }
         public DbSet<Intervention>? interventions { get; set; } = null!;
-
+        public DbSet<Customer>? customers { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            // modelBuilder.Entity<Building>()
-            // .HasMany(b => b.Batteries)
-            // .WithOne();
-
+            
+            modelBuilder.Entity<Building>()
+                .HasOne(a => a.Customer)
+                .WithMany(b => b.Buildings)
+                .HasForeignKey(a => a.customer_id);
 
             modelBuilder.Entity<Battery>()
                 .HasOne(p => p.Building)
